@@ -3,9 +3,21 @@
 namespace Ivy;
 
 use Ivy\Exceptions\UndefinedServiceException;
+use Ivy\Service\Banks\Banks;
+use Ivy\Service\Checkout\Session;
+use Ivy\Service\Merchant\Merchant;
+use Ivy\Service\Merchant\Refund;
+use Ivy\Service\Order\Order;
 use Ivy\Service\Service;
 use Ivy\Service\ServiceFactory;
 
+/**
+ * @property-read Banks $banks
+ * @property-read Session $session
+ * @property-read Merchant $merchant
+ * @property-read Refund $refund
+ * @property-read Order $order
+ */
 class Client
 {
     private ?ServiceFactory $factory;

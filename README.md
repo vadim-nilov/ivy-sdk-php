@@ -3,5 +3,5 @@
 $client = new Client('api-key');
 $client->useSandbox();
 
-$client->checkout->create();
+$client->session->create();
 ```
