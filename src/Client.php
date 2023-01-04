@@ -20,7 +20,7 @@ use Ivy\Service\ServiceFactory;
  */
 class Client
 {
-    private ?ServiceFactory $factory;
+    private ?ServiceFactory $factory = null;
 
     private HttpClient $http;
 

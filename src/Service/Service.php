@@ -7,7 +7,7 @@ use Ivy\Exceptions\ClientResponseException;
 
 class Service
 {
-    protected function __construct(private readonly Client $client)
+    public function __construct(private readonly Client $client)
     {
     }
 

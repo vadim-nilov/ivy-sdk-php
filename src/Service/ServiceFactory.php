@@ -24,7 +24,7 @@ class ServiceFactory
     public function create(string $className): Service
     {
         try {
-            $serviceClass = Services::from($className);
+            $serviceClass = Services::from($className)->getClass();
         } catch (ValueError $error) {
             throw new UndefinedServiceException($error->getMessage(), $error->getCode());
         }
