@@ -17,9 +17,4 @@ final class LocaleResource extends ApiResource
 
         return Locale::en;
     }
-
-    public function setLocale(Locale $locale): void
-    {
-        $this->data['locale'] = $locale->name;
-    }
 }
