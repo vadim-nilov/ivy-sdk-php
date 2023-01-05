@@ -27,16 +27,25 @@ class ApiResource
 
     public function toArray(): array
     {
-        return array_map(function ($resourceItem) {
+        return $this->map($this->data);
+    }
+
+    private function map(array $data): array
+    {
+        foreach ($data as $k => $resourceItem) {
             if ($resourceItem instanceof ApiResource) {
-                return $resourceItem->toArray();
+                $data[$k] = $resourceItem->toArray();
             }
 
             if ($resourceItem instanceof UnitEnum) {
-                return $resourceItem->name;
+                $data[$k] = $resourceItem->name;
             }
 
-            return $resourceItem;
-        }, $this->data);
+            if (is_array($resourceItem)) {
+                $data[$k] = $this->map($resourceItem);
+            }
+        }
+
+        return $data;
     }
 }
