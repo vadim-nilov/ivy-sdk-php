@@ -14,7 +14,7 @@ final class SearchResource extends ApiResource
         /** @var self $resource */
         $resource = parent::make($data);
 
-        if (isset($data['banks'])) {
+        if (!empty($data['banks'])) {
             $resource->banks = array_map(fn (array $bank) => BankResource::make($bank), $data['banks']);
         }
 

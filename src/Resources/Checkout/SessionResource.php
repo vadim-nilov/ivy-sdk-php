@@ -44,23 +44,23 @@ final class SessionResource extends ApiResource
         /** @var self $resource */
         $resource = parent::make($data);
 
-        if (isset($data['prefill'])) {
-            $resource->prefill = PrefillResource::make(['prefill' => $data['prefill']]);
+        if (!empty(($data['prefill']))) {
+            $resource->prefill = PrefillResource::make($data['prefill']);
         }
 
-        if (isset($data['price'])) {
-            $resource->price = PriceResource::make(['price' => $data['price']]);
+        if (!empty($data['price'])) {
+            $resource->price = PriceResource::make($data['price']);
         }
 
-        if (isset($data['locale'])) {
-            $resource->locale = LocaleResource::make(['locale' => $data['locale']]);
+        if (!empty($data['locale'])) {
+            $resource->locale = LocaleResource::make([$data['locale']]);
         }
 
-        if (isset($data['required'])) {
-            $resource->required = RequiredResource::make(['required' => $data['required']]);
+        if (!empty($data['required'])) {
+            $resource->required = RequiredResource::make($data['required']);
         }
 
-        if (isset($data['lineItems'])) {
+        if (!empty($data['lineItems'])) {
             $resource->lineItems = array_map(
                 fn (array $lineItem) => LineItemResource::make($lineItem),
                 $data['lineItems']
