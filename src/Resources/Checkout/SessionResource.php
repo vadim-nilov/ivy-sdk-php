@@ -3,6 +3,7 @@
 namespace Ivy\Resources\Checkout;
 
 use Ivy\Resources\ApiResource;
+use Ivy\Resources\Banks\SearchResource;
 use Ivy\Resources\Common\LineItemResource;
 use Ivy\Resources\Common\LocaleResource;
 use Ivy\Resources\Common\PriceResource;
@@ -38,7 +39,7 @@ use Ivy\Resources\Common\PriceResource;
  */
 final class SessionResource extends ApiResource
 {
-    public static function make(array $data): ApiResource
+    public static function make(array $data): SessionResource
     {
         /** @var self $resource */
         $resource = parent::make($data);

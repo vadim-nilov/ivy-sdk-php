@@ -13,7 +13,7 @@ class Session extends Service
      */
     public function create(SessionResource $sessionResource): SessionResource
     {
-        return SessionResource::make($this->request('/service/checkout/session/create.ts', $sessionResource->all()));
+        return SessionResource::make($this->request('/service/checkout/session/create.ts', $sessionResource->toArray()));
     }
 
     /**

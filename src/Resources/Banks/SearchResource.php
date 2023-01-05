@@ -9,7 +9,7 @@ use Ivy\Resources\ApiResource;
  */
 final class SearchResource extends ApiResource
 {
-    public static function make(array $data): ApiResource
+    public static function make(array $data): SearchResource
     {
         /** @var self $resource */
         $resource = parent::make($data);
