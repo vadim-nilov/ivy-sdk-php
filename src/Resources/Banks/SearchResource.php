@@ -9,10 +9,14 @@ use Ivy\Resources\ApiResource;
  */
 final class SearchResource extends ApiResource
 {
-    public static function make(array $data): static
+    public static function make(array $data): ApiResource
     {
+        /** @var self $resource */
         $resource = parent::make($data);
-        $resource->banks = array_map(fn (array $bank) => BankResource::make($bank), $resource->banks);
+
+        if (isset($data['banks'])) {
+            $resource->banks = array_map(fn (array $bank) => BankResource::make($bank), $data['banks']);
+        }
 
         return $resource;
     }

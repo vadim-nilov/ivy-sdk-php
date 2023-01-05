@@ -38,8 +38,9 @@ use Ivy\Resources\Common\PriceResource;
  */
 final class SessionResource extends ApiResource
 {
-    public static function make(array $data): static
+    public static function make(array $data): ApiResource
     {
+        /** @var self $resource */
         $resource = parent::make($data);
 
         if (isset($data['prefill'])) {
@@ -59,8 +60,10 @@ final class SessionResource extends ApiResource
         }
 
         if (isset($data['lineItems'])) {
-            $resource->lineItems = array_map(fn (array $lineItem) => LineItemResource::make($lineItem),
-                $resource->lineItems);
+            $resource->lineItems = array_map(
+                fn (array $lineItem) => LineItemResource::make($lineItem),
+                $data['lineItems']
+            );
         }
 
         return $resource;

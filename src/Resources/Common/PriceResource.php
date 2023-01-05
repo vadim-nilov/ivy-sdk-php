@@ -16,7 +16,7 @@ final class PriceResource extends ApiResource
 {
     public function __get(string $name)
     {
-        if ($name === 'currency' && isset($this->data['currency'])) {
+        if ($name === 'currency' && isset($this->data['currency']) && is_string($this->data['currency'])) {
             $currency = strtoupper($this->data['currency']);
 
             return constant("Ivy\Dictionaries\Currency::$currency");

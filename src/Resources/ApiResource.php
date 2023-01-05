@@ -2,13 +2,15 @@
 
 namespace Ivy\Resources;
 
+use UnitEnum;
+
 class ApiResource
 {
     final private function __construct(protected array $data)
     {
     }
 
-    public static function make(array $data): static
+    public static function make(array $data): ApiResource
     {
         return new static(data: $data);
     }
@@ -23,8 +25,18 @@ class ApiResource
         $this->data[$name] = $value;
     }
 
-    public function all(): array
+    public function toArray(): array
     {
-        return $this->data;
+        return array_map(function ($resourceItem) {
+            if ($resourceItem instanceof ApiResource) {
+                return $resourceItem->toArray();
+            }
+
+            if ($resourceItem instanceof UnitEnum) {
+                return $resourceItem->name;
+            }
+
+            return $resourceItem;
+        }, $this->data);
     }
 }
