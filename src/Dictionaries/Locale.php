@@ -4,7 +4,7 @@ namespace Ivy\Dictionaries;
 
 enum Locale
 {
-    case de;
-    case nl;
-    case en;
+    case DE;
+    case NL;
+    case EN;
 }

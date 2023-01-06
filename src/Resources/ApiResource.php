@@ -2,6 +2,7 @@
 
 namespace Ivy\Resources;
 
+use Ivy\Dictionaries\Currency;
 use UnitEnum;
 
 class ApiResource
@@ -10,7 +11,7 @@ class ApiResource
     {
     }
 
-    public static function make(array $data): ApiResource
+    public static function make(array $data): static
     {
         return new static(data: $data);
     }
@@ -38,7 +39,9 @@ class ApiResource
             }
 
             if ($resourceItem instanceof UnitEnum) {
-                $data[$k] = $resourceItem->name;
+                $data[$k] = $resourceItem instanceof Currency
+                    ? strtoupper($resourceItem->name)
+                    : strtolower($resourceItem->name);
             }
 
             if (is_array($resourceItem)) {

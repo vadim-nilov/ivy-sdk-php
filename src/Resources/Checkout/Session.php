@@ -3,10 +3,9 @@
 namespace Ivy\Resources\Checkout;
 
 use Ivy\Resources\ApiResource;
-use Ivy\Resources\Banks\SearchResource;
-use Ivy\Resources\Common\LineItemResource;
-use Ivy\Resources\Common\LocaleResource;
-use Ivy\Resources\Common\PriceResource;
+use Ivy\Resources\Common\LineItem;
+use Ivy\Resources\Common\Locale;
+use Ivy\Resources\Common\Price;
 
 /**
  * @property bool $express
@@ -22,47 +21,46 @@ use Ivy\Resources\Common\PriceResource;
  * @property string $category The merchant category code of the shop
  * @property-read int $co2Grams
  * @property bool $guest Guest mode. If set to true, customers do not have to enter an email or signup with Ivy to complete an order. For express checkoutSessions this is always false.
- * @property PrefillResource $prefill
- * @property PriceResource $price
- * @property array<LineItemResource> $lineItems
+ * @property Prefill $prefill
+ * @property Price $price
+ * @property array<LineItem> $lineItems
  * @property array $billingAddress
  * @property string $verificationToken
  * @property int $created
  * @property int $expiresAt
- * @property LocaleResource $locale
+ * @property Locale $locale
  * @property-read string $createdAt
  * @property-read string $updatedAt
  * @property-read string $merchantAppId
  * @property-read string $abortReason
  * @property-read string $climateActionMode
- * @property RequiredResource $required
+ * @property Required $required
  */
-final class SessionResource extends ApiResource
+final class Session extends ApiResource
 {
-    public static function make(array $data): SessionResource
+    public static function make(array $data): static
     {
-        /** @var self $resource */
         $resource = parent::make($data);
 
         if (!empty(($data['prefill']))) {
-            $resource->prefill = PrefillResource::make($data['prefill']);
+            $resource->prefill = Prefill::make($data['prefill']);
         }
 
         if (!empty($data['price'])) {
-            $resource->price = PriceResource::make($data['price']);
+            $resource->price = Price::make($data['price']);
         }
 
         if (!empty($data['locale'])) {
-            $resource->locale = LocaleResource::make([$data['locale']]);
+            $resource->locale = Locale::make([$data['locale']]);
         }
 
         if (!empty($data['required'])) {
-            $resource->required = RequiredResource::make($data['required']);
+            $resource->required = Required::make($data['required']);
         }
 
         if (!empty($data['lineItems'])) {
             $resource->lineItems = array_map(
-                fn (array $lineItem) => LineItemResource::make($lineItem),
+                fn (array $lineItem) => LineItem::make($lineItem),
                 $data['lineItems']
             );
         }

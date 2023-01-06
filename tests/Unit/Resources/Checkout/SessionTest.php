@@ -7,7 +7,7 @@ it('returns the session resource', function () {
         'referenceId' => 'test',
     ];
 
-    Assert::assertInstanceOf(Ivy\Resources\Checkout\SessionResource::class, Ivy\Resources\Checkout\SessionResource::make($data));
+    Assert::assertInstanceOf(Ivy\Resources\Checkout\Session::class, Ivy\Resources\Checkout\Session::make($data));
 });
 
 it('returns the session resource with line item data', function () {
@@ -23,13 +23,13 @@ it('returns the session resource with line item data', function () {
         ]
     ];
 
-    $resource = Ivy\Resources\Checkout\SessionResource::make($data);
-    $lineItem = $resource->lineItems[0] ?? null;
+    $resource = Ivy\Resources\Checkout\Session::make($data);
+    $lineItem = $resource->lineItems[0];
 
     Assert::assertIsArray($resource->lineItems);
     Assert::assertCount(1, $resource->lineItems);
-    Assert::assertInstanceOf(Ivy\Resources\Common\LineItemResource::class, $lineItem);
-    /** @var \Ivy\Resources\Common\LineItemResource $lineItem */
+    Assert::assertInstanceOf(Ivy\Resources\Common\LineItem::class, $lineItem);
+    /** @var \Ivy\Resources\Common\LineItem $lineItem */
     Assert::assertEquals('test', $lineItem->name);
     Assert::assertEquals(3, $lineItem->amount);
 });

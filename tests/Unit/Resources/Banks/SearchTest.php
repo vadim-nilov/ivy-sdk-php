@@ -15,14 +15,14 @@ it('returns the array of bank resources', function () {
         ],
     ];
 
-    Assert::assertIsArray(Ivy\Resources\Banks\SearchResource::make($data)->banks);
-    Assert::assertCount(1, Ivy\Resources\Banks\SearchResource::make($data)->banks);
+    Assert::assertIsArray(Ivy\Resources\Banks\Search::make($data)->banks);
+    Assert::assertCount(1, Ivy\Resources\Banks\Search::make($data)->banks);
     Assert::assertInstanceOf(
-        \Ivy\Resources\Banks\BankResource::class,
-        Ivy\Resources\Banks\SearchResource::make($data)->banks[0]
+        \Ivy\Resources\Banks\Bank::class,
+        Ivy\Resources\Banks\Search::make($data)->banks[0]
     );
     Assert::assertInstanceOf(
-        \Ivy\Resources\Banks\SearchResource::class,
-        Ivy\Resources\Banks\SearchResource::make($data)
+        \Ivy\Resources\Banks\Search::class,
+        Ivy\Resources\Banks\Search::make($data)
     );
 });

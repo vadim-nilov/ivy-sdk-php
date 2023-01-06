@@ -7,6 +7,6 @@ use Ivy\Resources\ApiResource;
 /**
  * @property bool $phone
  */
-final class RequiredResource extends ApiResource
+final class Required extends ApiResource
 {
 }

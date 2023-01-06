@@ -12,8 +12,7 @@ it('set the correct currency value', function () {
         'total' => 1,
     ];
 
-    /** @var \Ivy\Resources\Common\PriceResource $resource*/
-    $resource = Ivy\Resources\Common\PriceResource::make($data);
+    $resource = Ivy\Resources\Common\Price::make($data);
     $result = $resource->toArray();
 
     Assert::assertEquals('EUR', $result['currency']);
@@ -28,8 +27,7 @@ it('returns the correct string currency value', function () {
         'total' => 1,
     ];
 
-    /** @var \Ivy\Resources\Common\PriceResource $resource*/
-    $resource = Ivy\Resources\Common\PriceResource::make($data);
+    $resource = Ivy\Resources\Common\Price::make($data);
     Assert::assertInstanceOf(Currency::class, $resource->currency);
     Assert::assertEquals(Currency::EUR, $resource->currency);
 });

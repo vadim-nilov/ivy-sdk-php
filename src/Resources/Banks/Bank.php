@@ -11,6 +11,6 @@ use Ivy\Resources\ApiResource;
  * @property-read string $url
  * @property-read string $provider
  */
-final class BankResource extends ApiResource
+final class Bank extends ApiResource
 {
 }

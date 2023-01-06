@@ -12,7 +12,7 @@ use Ivy\Resources\ApiResource;
  * @property-read int $total
  * @property-read Currency $currency
  */
-final class PriceResource extends ApiResource
+final class Price extends ApiResource
 {
     public function __get(string $name)
     {

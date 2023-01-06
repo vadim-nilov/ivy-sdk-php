@@ -3,7 +3,7 @@
 namespace Ivy\Service\Banks;
 
 use Ivy\Exceptions\ClientResponseException;
-use Ivy\Resources\Banks\SearchResource;
+use Ivy\Resources\Banks\Search;
 use Ivy\Service\Service;
 
 class Banks extends Service
@@ -11,12 +11,12 @@ class Banks extends Service
     /**
      * @param string $search
      *
-     * @return SearchResource
+     * @return Search
      * @throws ClientResponseException
      */
-    public function search(string $search): SearchResource
+    public function search(string $search): Search
     {
-        return SearchResource::make($this->request('/service/banks/search.ts', [
+        return Search::make($this->request('/service/banks/search.ts', [
             'search' => $search
         ]));
     }

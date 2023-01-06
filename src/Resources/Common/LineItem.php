@@ -18,6 +18,6 @@ use Ivy\Resources\ApiResource;
  * @property-read string $EAN
  * @property-read int $co2Grams
  */
-final class LineItemResource extends ApiResource
+final class LineItem extends ApiResource
 {
 }

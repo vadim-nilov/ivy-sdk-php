@@ -20,7 +20,7 @@ it('returns all data as an array', function () {
     $resource = \Ivy\Resources\ApiResource::make([
         'param1' => 'value1',
         'param2' => 'value2',
-        'param3' => \Ivy\Resources\Banks\SearchResource::make(['test' => 1]),
+        'param3' => \Ivy\Resources\Banks\Search::make(['test' => 1]),
         'param4' => \Ivy\Dictionaries\Currency::EUR,
     ]);
 
