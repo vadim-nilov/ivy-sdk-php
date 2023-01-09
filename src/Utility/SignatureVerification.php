@@ -4,8 +4,13 @@ namespace Ivy\Utility;
 
 final class SignatureVerification
 {
-    public function sign(string $data, string $secret): string
+    public function verify(string $headerValue, string $data, string $key): bool
     {
-        return hash_hmac('sha256', $data, $secret);
+        return $this->sign($data, $key) === $headerValue;
+    }
+
+    public function sign(string $data, string $key): string
+    {
+        return hash_hmac('sha256', $data, $key);
     }
 }
