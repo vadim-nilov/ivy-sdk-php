@@ -5,8 +5,8 @@ namespace Ivy\Dictionaries;
 use Ivy\Service\Banks\Banks;
 use Ivy\Service\Checkout\Session;
 use Ivy\Service\Merchant\Merchant;
-use Ivy\Service\Merchant\Refund;
 use Ivy\Service\Order\Order;
+use Ivy\Service\Refund\Refund;
 
 enum Services: string
 {

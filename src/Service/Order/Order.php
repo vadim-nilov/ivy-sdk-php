@@ -6,7 +6,7 @@ use Ivy\Exceptions\ClientResponseException;
 use Ivy\Resources\Order\Order as OrderResource;
 use Ivy\Service\Service;
 
-class Order extends Service
+final class Order extends Service
 {
     /**
      * @param string $id

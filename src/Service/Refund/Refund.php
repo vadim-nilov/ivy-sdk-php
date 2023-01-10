@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivy\Service\Merchant;
+namespace Ivy\Service\Refund;
 
 use Ivy\Exceptions\ClientResponseException;
 use Ivy\Resources\Merchant\RefundBatchResponse;
@@ -8,7 +8,7 @@ use Ivy\Resources\Merchant\RefundRequest;
 use Ivy\Resources\Merchant\RefundResponse;
 use Ivy\Service\Service;
 
-class Refund extends Service
+final class Refund extends Service
 {
     /**
      * @param RefundRequest $requestResource

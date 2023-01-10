@@ -6,7 +6,7 @@ use Ivy\Exceptions\ClientResponseException;
 use Ivy\Resources\Checkout\Session as SessionResource;
 use Ivy\Service\Service;
 
-class Session extends Service
+final class Session extends Service
 {
     /**
      * @see: https://docs.getivy.de/reference#/checkout/session/create.ts

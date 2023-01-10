@@ -6,7 +6,7 @@ use Ivy\Exceptions\ClientResponseException;
 use Ivy\Resources\Banks\Search;
 use Ivy\Service\Service;
 
-class Banks extends Service
+final class Banks extends Service
 {
     /**
      * @param string $search
