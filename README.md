@@ -12,7 +12,7 @@ $client->useSandbox();
 ### Banks
 #### Search
 `
-$client->merchant->update(MerchantResource);
+$client->banks->search(searchString);
 `
 
 ---
@@ -20,12 +20,12 @@ $client->merchant->update(MerchantResource);
 ### Checkout
 #### Create Session
 `
-$client->merchant->update(MerchantResource);
+$client->session->create(SessionResource);
 `
 
 #### Retrieve session
 `
-$client->merchant->update(MerchantResource);
+$client->session->retrieve(id);
 `
 
 ---
