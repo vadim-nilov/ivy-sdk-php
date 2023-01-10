@@ -17,7 +17,7 @@ class Order extends Service
     public function retrieve(string $id): OrderResource
     {
         return OrderResource::make(
-            $this->request('service/merchant/payment/refund.ts', ['id' => $id])
+            $this->request('/service/order/details.ts', ['id' => $id])
         );
     }
 
@@ -30,7 +30,7 @@ class Order extends Service
     public function update(OrderResource $order): OrderResource
     {
         return OrderResource::make(
-            $this->request('service/merchant/payment/refund.ts', $order->toArray())
+            $this->request('/service/order/update.ts', $order->toArray())
         );
     }
 }

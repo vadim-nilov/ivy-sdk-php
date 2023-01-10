@@ -36,7 +36,7 @@ class Refund extends Service
     {
         return RefundBatchResponse::make(
             $this->request(
-                'service/merchant/payment/refund.ts',
+                'service/merchant/payment/refund/batch.ts',
                 [
                     'requestedRefunds' => array_map(
                         fn (RefundRequest $resource) => $resource->toArray(),
