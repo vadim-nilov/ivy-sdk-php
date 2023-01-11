@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Ivy\Exceptions\ClientResponseException;
 
-class HttpClient
+final class HttpClient
 {
     const AUTH_HEADER = 'X-IVY-API-KEY';
     const API_BASE = 'https://api.getivy.de/api';
@@ -19,15 +19,19 @@ class HttpClient
 
     private bool $sandboxMode = false;
 
-    private function __construct(string $apiKey)
+    private string $apiKey = '';
+
+    private function __construct()
     {
         $this->client = new GuzzleClient([
-            RequestOptions::HEADERS => [
-                self::AUTH_HEADER => $apiKey
-            ],
             RequestOptions::TIMEOUT => 3,
             RequestOptions::CONNECT_TIMEOUT => 3,
         ]);
+    }
+
+    public function setApiKey($apiKey): void
+    {
+        $this->apiKey = $apiKey;
     }
 
     public function setSandbox(bool $sandboxMode = false): void
@@ -35,10 +39,10 @@ class HttpClient
         $this->sandboxMode = $sandboxMode;
     }
 
-    public static function make(string $apiKey): HttpClient
+    public static function make(): HttpClient
     {
         if (!isset(self::$instance)) {
-            self::$instance = new self($apiKey);
+            self::$instance = new self();
         }
 
         return self::$instance;
@@ -61,7 +65,10 @@ class HttpClient
             ;
 
             try {
-                $response = $this->client->request('POST', $uri, ['json' => $parameters]);
+                $response = $this->client->request('POST', $uri, [
+                    'json' => $parameters,
+                    'headers' => [self::AUTH_HEADER => $this->apiKey]
+                ]);
             } catch (GuzzleException $exception) {
                 throw new ClientResponseException($exception->getMessage(), $exception->getCode());
             }

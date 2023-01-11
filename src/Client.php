@@ -18,15 +18,19 @@ use Ivy\Service\ServiceFactory;
  * @property-read Refund $refund
  * @property-read Order $order
  */
-class Client
+final class Client
 {
     private ?ServiceFactory $factory = null;
 
     private HttpClient $http;
 
-    public function __construct(private readonly string $apiKey)
+    public function __construct(?string $apiKey = null)
     {
-        $this->http = HttpClient::make($this->apiKey);
+        $this->http = HttpClient::make();
+
+        if (null !== $apiKey) {
+            $this->http->setApiKey($apiKey);
+        }
     }
 
     /**
@@ -47,6 +51,11 @@ class Client
     public function useSandbox(): void
     {
         $this->http->setSandbox(true);
+    }
+
+    public function setApiKey(string $apiKey): void
+    {
+        $this->http->setApiKey($apiKey);
     }
 
     public function getHttp(): HttpClient
