@@ -21,11 +21,14 @@ final class HttpClient
 
     private string $apiKey = '';
 
+    private int $timeout = 3;
+    private int $connectTimeout = 3;
+
     private function __construct()
     {
         $this->client = new GuzzleClient([
-            RequestOptions::TIMEOUT => 3,
-            RequestOptions::CONNECT_TIMEOUT => 3,
+            RequestOptions::TIMEOUT => $this->timeout,
+            RequestOptions::CONNECT_TIMEOUT => $this->connectTimeout,
         ]);
     }
 
@@ -37,6 +40,16 @@ final class HttpClient
     public function setSandbox(bool $sandboxMode = false): void
     {
         $this->sandboxMode = $sandboxMode;
+    }
+
+    public function setTimeout(int $timeout): void
+    {
+        $this->timeout = $timeout;
+    }
+
+    public function setConnectTimeout(int $connectTimeout): void
+    {
+        $this->connectTimeout = $connectTimeout;
     }
 
     public static function make(): HttpClient

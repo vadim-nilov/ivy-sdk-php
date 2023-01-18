@@ -36,3 +36,17 @@ it('changes api key provided to HttpClient', function () {
 
     expect($reflectionProperty->getValue($httpClient))->toEqual('new key');
 });
+
+it('set HttpClient timeouts', function () {
+    $client = new \Ivy\Client('test');
+    $httpClient = $client->getHttp();
+    $httpClient->setConnectTimeout(5);
+    $httpClient->setTimeout(6);
+
+    $reflectionObject = new ReflectionObject($httpClient);
+    $connectTimeoutProperty = $reflectionObject->getProperty('connectTimeout');
+    $timeoutProperty = $reflectionObject->getProperty('timeout');
+
+    expect($connectTimeoutProperty->getValue($httpClient))->toEqual(5)
+        ->and($timeoutProperty->getValue($httpClient))->toEqual(6);
+});
