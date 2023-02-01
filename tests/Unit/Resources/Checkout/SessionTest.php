@@ -20,7 +20,8 @@ it('returns the session resource with line item data', function () {
                 'singleVat' => 2,
                 'amount' => 3
             ]
-        ]
+        ],
+        'locale' => 'de'
     ];
 
     $resource = Ivy\Resources\Checkout\Session::make($data);
@@ -29,7 +30,7 @@ it('returns the session resource with line item data', function () {
     Assert::assertIsArray($resource->lineItems);
     Assert::assertCount(1, $resource->lineItems);
     Assert::assertInstanceOf(Ivy\Resources\Common\LineItem::class, $lineItem);
-    /** @var \Ivy\Resources\Common\LineItem $lineItem */
     Assert::assertEquals('test', $lineItem->name);
     Assert::assertEquals(3, $lineItem->amount);
+    Assert::assertEquals(\Ivy\Dictionaries\Locale::DE, $resource->locale);
 });

@@ -3,6 +3,7 @@
 namespace Ivy\Resources;
 
 use Ivy\Dictionaries\Currency;
+use Ivy\Dictionaries\Locale;
 use UnitEnum;
 
 class ApiResource

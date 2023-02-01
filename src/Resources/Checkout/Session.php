@@ -51,7 +51,8 @@ final class Session extends ApiResource
         }
 
         if (!empty($data['locale'])) {
-            $resource->locale = Locale::make([$data['locale']]);
+            $locale = strtoupper($data['locale']);
+            $resource->locale = constant("Ivy\Dictionaries\Locale::$locale") ?? \Ivy\Dictionaries\Locale::EN;
         }
 
         if (!empty($data['required'])) {
