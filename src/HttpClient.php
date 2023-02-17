@@ -13,6 +13,8 @@ final class HttpClient
     const API_BASE = 'https://api.getivy.de/api';
     const API_SANDBOX_BASE = 'https://api.sand.getivy.de/api';
 
+    const REQUEST_INTERVAL_STEP = 100;
+
     private GuzzleClient $client;
 
     private static ?HttpClient $instance;
@@ -71,6 +73,7 @@ final class HttpClient
      */
     public function send(string $uri, array $parameters, int $attempts = 1): array
     {
+        $interval = 0;
         do {
             $uri = $this->sandboxMode
                 ? self::API_SANDBOX_BASE . $uri
@@ -91,6 +94,8 @@ final class HttpClient
             }
 
             $attempts--;
+            $interval += self::REQUEST_INTERVAL_STEP * 1000;
+            usleep($interval);
         } while ($attempts > 0);
 
         throw new ClientResponseException($response->getBody(), $response->getStatusCode());
