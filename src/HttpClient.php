@@ -21,7 +21,7 @@ final class HttpClient
 
     private string $apiKey = '';
 
-    private int $timeout = 3;
+    private int $timeout = 10;
     private int $connectTimeout = 3;
 
     private function __construct()
