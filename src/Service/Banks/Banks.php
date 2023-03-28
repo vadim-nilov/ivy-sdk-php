@@ -16,7 +16,7 @@ final class Banks extends Service
      */
     public function search(string $search): Search
     {
-        return Search::make($this->request('/service/banks/search.ts', [
+        return Search::make($this->request('/service/banks/search', [
             'search' => $search
         ]));
     }

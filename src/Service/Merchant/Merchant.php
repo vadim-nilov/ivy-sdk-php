@@ -18,7 +18,7 @@ final class Merchant extends Service
     {
         return MerchantResource::make(
             $this->request(
-                'service/merchant/update.ts',
+                'service/merchant/update',
                 $merchant->toArray()
             )
         );
